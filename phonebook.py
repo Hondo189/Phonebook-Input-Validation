@@ -5,9 +5,11 @@ Kent Irvin
 1001487672
 """
 #with file = open('data.txt', 'r+'):
+nameRegex = "([A-Za-z]{2,25} [A-Za-z]{1,25} ?[A-Za-z]{2,25}|[A-Za-z]{2,25}, [A-Za-z]{2,25} ?[A-Za-z]{1,25})"
 buffer = input("ADD <Person> <Telephone #> \nDEL <Person> \nDEL <Telephone #> \nLIST \n")
 token = buffer.split()
 name = ""
+phonebook = []
 
 for i in range(0, len(token)):
     if i == 0:
@@ -18,6 +20,14 @@ for i in range(0, len(token)):
         name += " " + token[i]
     else:
         phone = token[i]
-print(action+".")
-print(name+".")
-print(phone+".")
+
+if action.upper() == "ADD":
+    match = re.match(nameRegex, name)
+    if match:
+        #phonebook.append([name,phone])
+        print("VALID NAME")
+    else:
+        print("INVALID NAME")
+if action == "EXIT":
+    exit()
+print(phonebook)
