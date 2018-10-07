@@ -5,7 +5,7 @@ Kent Irvin
 1001487672
 """
 #with file = open('data.txt', 'r+'):
-nameRegex = "([A-Za-z]{2,25} [A-Za-z]{1,25} ?[A-Za-z]{2,25}|[A-Za-z]{2,25}, [A-Za-z]{2,25} ?[A-Za-z]{1,25})"
+nameRegex = "^(O’)?([A-Za-z]{1,31})(-[A-Za-z]{1,31})?,?( (O’)?([A-Za-z]{1,31})(-[A-Za-z]{1,31})?)?$"
 buffer = input("ADD <Person> <Telephone #> \nDEL <Person> \nDEL <Telephone #> \nLIST \n")
 token = buffer.split()
 name = ""
