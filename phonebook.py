@@ -27,7 +27,7 @@ with open('phonebook.txt', 'r+') as file:
         name = ""
 print(phonebook)                
 nameRegex = "^(O’)?([A-Za-z]{1,31})(-[A-Za-z]{1,31})?,?( (O’)?([A-Za-z]{1,31})(-[A-Za-z]{1,31})?)?( (O’)?([A-Za-z]{1,31})(-[A-Za-z]{1,31})?)?$"
-phoneRegex = "[0-9]{5}.?([0-9]{5})?|(\+?[0-9]{1,3}[ \.\-]?)?\([0-9]{2,3}\)|[0-9]{3}[ \.\-][0-9]{4}|([0-9]{1,4}[ \.\-]){3,4}[0-9]{1,4}"
+phoneRegex = "[0-9]{5}.?([0-9]{5})?|(\+?[0-9]{1,3}[ \.\-]?)?\([0-9]{2,3}\)|[0-9]{3}[ \.\-][0-9]{4}|([0-9]{1,4}[ \.\-])[0-9]{1,4}"
 buffer = input("ADD <Person> <Telephone #> \nDEL <Person> \nDEL <Telephone #> \nLIST \nEXIT")
 token = buffer.split()
 action = token[0]
