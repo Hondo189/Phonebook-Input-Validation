@@ -1,4 +1,5 @@
 import re
+import sys
 """
 CSE-5382 Assignment 2
 Kent Irvin
@@ -66,9 +67,11 @@ if action.upper() == "ADD":
             phonebook.append([name,phone])
         else:
             print("INVALID PHONE NUMBER")
+            print("INVALID PHONE NUMBER", file-sys.stderr)
             exit(1)
     else:
         print("INVALID NAME")
+        print("INVALID NAME", file-sys.stderr)
         exit(1)
 elif action.upper() == "DEL":
     for i in range(1, len(token)):
