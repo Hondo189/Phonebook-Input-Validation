@@ -66,8 +66,10 @@ if action.upper() == "ADD":
             phonebook.append([name,phone])
         else:
             print("INVALID PHONE NUMBER")
+            exit(1)
     else:
         print("INVALID NAME")
+        exit(1)
 elif action.upper() == "DEL":
     for i in range(1, len(token)):
         if i == 1:
@@ -95,3 +97,9 @@ elif action.upper() == "LIST":
 elif action == "EXIT":
     exit()
 print(phonebook)
+
+with open('phonebook.txt', 'w+') as file:
+    for row in phonebook:
+        for elem in row:
+            file.write(elem + ' ')
+        file.write('\n')
