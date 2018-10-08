@@ -26,12 +26,12 @@ with open('phonebook.txt', 'r+') as file:
         phonebook.append([name,phone])
         name = ""
 print(phonebook)                
-"""
 nameRegex = "^(O’)?([A-Za-z]{1,31})(-[A-Za-z]{1,31})?,?( (O’)?([A-Za-z]{1,31})(-[A-Za-z]{1,31})?)?( (O’)?([A-Za-z]{1,31})(-[A-Za-z]{1,31})?)?$"
 phoneRegex = "[0-9]{5}.?([0-9]{5})?|(\+?[0-9]{1,3}[ \.\-]?)?\([0-9]{2,3}\)|[0-9]{3}[ \.\-][0-9]{4}|([0-9]{1,4}[ \.\-]){3,4}[0-9]{1,4}"
 buffer = input("ADD <Person> <Telephone #> \nDEL <Person> \nDEL <Telephone #> \nLIST \nEXIT")
 token = buffer.split()
-
+action = token[0]
+"""
 for i in range(0, len(token)):
     if i == 0:
         action = token[i]
@@ -45,8 +45,17 @@ for i in range(0, len(token)):
 print("'"+action+"'")
 print("'"+name+"'")
 print("'"+phone+"'")   
+"""
 
 if action.upper() == "ADD":
+    for i in range(1, len(token)):
+        if i == 1:
+            name += token[i]
+        elif i < len(token)-1:
+            name += " " + token[i]
+        else:
+            phone = token[i]    
+    
     match = re.match(nameRegex, name)
     if match:
         print("VALID NAME")
@@ -59,13 +68,30 @@ if action.upper() == "ADD":
             print("INVALID PHONE NUMBER")
     else:
         print("INVALID NAME")
-
-if action.upper() == "LIST":
+elif action.upper() == "DEL":
+    for i in range(1, len(token)):
+        if i == 1:
+            temp = token[i]
+        elif i < len(token):
+            temp += " " + token[i]        
+    
+    print(temp)
+    if phonebook[1][1] == temp:
+        print(phonebook[1][1] +" = "+ temp)
+    if phonebook[1][1] != temp:
+        print(phonebook[1][1] +" != "+ temp)
+        
+    matchN = re.match(nameRegex, temp)
+    matchP = re.match(phoneRegex, temp)
+    if matchP:
+        phonebook = [v for v in phonebook if v[1] != temp]
+    elif matchN:
+        phonebook = [v for v in phonebook if v[0].lower() != temp.lower()]
+elif action.upper() == "LIST":
     for row in phonebook:
         for elem in row:
             print(elem, end=' ')
         print()
-if action == "EXIT":
+elif action == "EXIT":
     exit()
 print(phonebook)
-"""
